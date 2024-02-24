@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-public class CommonDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class AnimalTypeDto {
 
     private Integer id;
     private String name;
-    private String soundPath;
-    private String imagePath;
 }

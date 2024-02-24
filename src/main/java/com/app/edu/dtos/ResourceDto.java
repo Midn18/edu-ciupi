@@ -5,10 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-public class CommonDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResourceDto {
 
     private Integer id;
     private String name;
-    private String soundPath;
-    private String imagePath;
+    private String resourcePath;
 }

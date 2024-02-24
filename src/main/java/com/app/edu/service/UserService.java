@@ -7,9 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    public List<UserEntity> getAllUsers();
+    public UserDto getById(Integer id);
 
-    public Optional<UserEntity> getById(Integer id);
-
-    public UserEntity post(UserDto userDto);
+    public UserDto post(UserDto userDto);
 }

@@ -1,12 +1,14 @@
 package com.app.edu.service;
 
-import com.app.edu.entities.AnimalEntity;
+import com.app.edu.dtos.AnimalDto;
 import java.util.List;
 import java.util.Optional;
 
 public interface AnimalService {
 
-    public Optional<AnimalEntity> getAnimalById(Integer id);
+    public AnimalDto getAnimalById(Integer id);
 
-    public List<AnimalEntity> getAnimalsByAnimalTypeId(Integer animalTypeId);
+    public List<AnimalDto> getAnimalsByAnimalTypeId(Integer animalTypeId);
+
+    public void playSound(Integer id);
 }
