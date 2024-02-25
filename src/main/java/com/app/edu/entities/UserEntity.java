@@ -22,6 +22,9 @@ public class UserEntity {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "first_name")
     private String firstName;
 
