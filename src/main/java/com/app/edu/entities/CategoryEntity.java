@@ -21,6 +21,9 @@ public class CategoryEntity {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "image_path")
+    private String imagePath;
+
     @Column(name = "age")
     private Integer age;
 }

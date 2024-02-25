@@ -44,5 +44,4 @@ public class AnimalServiceImpl implements AnimalService {
         Optional<AnimalEntity> animalEntity = animalRepository.findById(id);
         animalEntity.ifPresent(entity -> soundManager.playSound(entity.getSoundPath()));
     }
-
 }
