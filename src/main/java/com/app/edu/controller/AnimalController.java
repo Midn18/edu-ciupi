@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@Tag(name = "Animals", description = "User management APIs")
+@Tag(name = "Animals", description = "Animals management APIs")
 @RequestMapping("/api/animals")
 public class AnimalController {
 
