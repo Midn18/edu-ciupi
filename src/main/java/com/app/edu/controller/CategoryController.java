@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
 
     @Autowired
-    private CategoryServiceImpl categoryService;
+    CategoryServiceImpl categoryService;
 
     @Operation(summary = "Retrieve all Categories")
     @ApiResponses({
