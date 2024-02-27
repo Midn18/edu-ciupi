@@ -1,14 +1,14 @@
 package com.app.edu.service;
 
 import com.app.edu.dtos.AnimalDto;
+import com.app.edu.utils.AnimalTypeEnum;
 import java.util.List;
-import java.util.Optional;
 
 public interface AnimalService {
 
     public AnimalDto getAnimalById(Integer id);
 
-    public List<AnimalDto> getAnimalsByAnimalTypeId(Integer animalTypeId);
+    public List<AnimalDto> getAnimalsByAnimalType(AnimalTypeEnum animalType);
 
     public void playSound(Integer id);
 }

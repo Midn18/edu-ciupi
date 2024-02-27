@@ -1,10 +1,11 @@
 package com.app.edu.repository;
 
 import com.app.edu.entities.AnimalEntity;
+import com.app.edu.utils.AnimalTypeEnum;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnimalRepository extends JpaRepository<AnimalEntity, Integer> {
 
-    public List<AnimalEntity> findAnimalByAnimalTypeId(Integer animalTypeId);
+    public List<AnimalEntity> findAnimalByAnimalType(AnimalTypeEnum animalType);
 }

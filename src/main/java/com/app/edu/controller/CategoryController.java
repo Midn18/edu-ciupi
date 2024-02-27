@@ -29,13 +29,13 @@ public class CategoryController {
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
             @Content(schema = @Schema(implementation = CategoryDto.class), mediaType = "application/json")}),
-        @ApiResponse(responseCode = "204", description = "There are no categories", content = {
+        @ApiResponse(responseCode = "404", description = "There are no categories", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/")
-    public ResponseEntity<List<CategoryDto>> getCategories() {
+    public ResponseEntity<List<CategoryDto>> getCategories(Integer ageCategory) {
         try {
-            List<CategoryDto> categories = categoryService.getCategories();
+            List<CategoryDto> categories = categoryService.getCategories(ageCategory);
             if (categories.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }

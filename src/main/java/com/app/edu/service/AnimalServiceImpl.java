@@ -3,6 +3,7 @@ package com.app.edu.service;
 import com.app.edu.dtos.AnimalDto;
 import com.app.edu.entities.AnimalEntity;
 import com.app.edu.repository.AnimalRepository;
+import com.app.edu.utils.AnimalTypeEnum;
 import com.app.edu.utils.SoundManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public List<AnimalDto> getAnimalsByAnimalTypeId(Integer animalTypeId) {
-        List<AnimalEntity> animalEntities = animalRepository.findAnimalByAnimalTypeId(animalTypeId);
+    public List<AnimalDto> getAnimalsByAnimalType(AnimalTypeEnum animalType) {
+        List<AnimalEntity> animalEntities = animalRepository.findAnimalByAnimalType(animalType);
         List<AnimalDto> animalDtos = new ArrayList<>();
 
         for (AnimalEntity animalEntity : animalEntities) {
