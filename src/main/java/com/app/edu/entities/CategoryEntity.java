@@ -24,6 +24,6 @@ public class CategoryEntity {
     @Column(name = "image_path")
     private String imagePath;
 
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "age_category")
+    private Integer ageCategory;
 }

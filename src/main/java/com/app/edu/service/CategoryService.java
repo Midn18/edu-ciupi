@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface CategoryService {
 
-    public List<CategoryDto> getCategories();
+    public List<CategoryDto> getCategories(Integer ageCategory);
 }

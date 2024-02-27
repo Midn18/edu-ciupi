@@ -18,10 +18,11 @@ public class CategoryServiceImpl implements CategoryService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<CategoryDto> getCategories() {
+    public List<CategoryDto> getCategories(Integer ageCategory) {
         return categoryRepository.findAll()
             .stream()
             .map(category -> modelMapper.map(category, CategoryDto.class))
+            .filter(category -> category.getAge().equals(ageCategory))
             .collect(Collectors.toList());
     }
 }

@@ -2,6 +2,7 @@ package com.app.edu.controller;
 
 import com.app.edu.dtos.AnimalDto;
 import com.app.edu.service.AnimalServiceImpl;
+import com.app.edu.utils.AnimalTypeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,17 +28,18 @@ public class AnimalController {
     @Autowired
     AnimalServiceImpl animalService;
 
-    @Operation(summary = "Retrieve all Animals by Animal Category id")
+    @Operation(summary = "Retrieve all Animals by Animal Type")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
             @Content(schema = @Schema(implementation = AnimalDto.class), mediaType = "application/json")}),
         @ApiResponse(responseCode = "204", description = "There are no animals", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/")
-    public ResponseEntity<List<AnimalDto>> getAnimalsByAnimalTypeId(@RequestParam(required = true) Integer animalTypeId) {
+    @GetMapping("/type/{animalType}")
+    public ResponseEntity<List<AnimalDto>> getAnimalsByAnimalType(@PathVariable(required = true) int animalType) {
         try {
-            List<AnimalDto> animals = animalService.getAnimalsByAnimalTypeId(animalTypeId);
+            AnimalTypeEnum animalTypeEnum = AnimalTypeEnum.values()[animalType];
+            List<AnimalDto> animals = animalService.getAnimalsByAnimalType(animalTypeEnum);
             if (animals.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
