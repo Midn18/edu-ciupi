@@ -27,4 +27,11 @@ public class AnimalEntity extends CommonEntity {
 
     @Column(name = "country")
     private String country;
+
+    public AnimalEntity(Integer id, String name, String soundPath, String imagePath, AnimalTypeEnum animalType, String description, String country) {
+        super(id, name, soundPath, imagePath);
+        this.animalType = animalType;
+        this.description = description;
+        this.country = country;
+    }
 }

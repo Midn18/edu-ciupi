@@ -5,11 +5,15 @@ import com.app.edu.entities.AnimalEntity;
 import com.app.edu.repository.AnimalRepository;
 import com.app.edu.utils.AnimalTypeEnum;
 import com.app.edu.utils.SoundManager;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,8 +45,34 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public void playSound(Integer id) {
-        Optional<AnimalEntity> animalEntity = animalRepository.findById(id);
-        animalEntity.ifPresent(entity -> soundManager.playSound(entity.getSoundPath()));
+    public Resource returnAnimalSoundPath(Integer id) {
+        return animalRepository.findById(id).map(animal -> {
+            try {
+                Path file = Paths.get(animal.getSoundPath());
+                Resource resource = new UrlResource(file.toUri());
+                if (!resource.exists() || !resource.isReadable()) {
+                    throw new RuntimeException("File not found or not readable: " + animal.getSoundPath());
+                }
+                return resource;
+            } catch (MalformedURLException e) {
+                throw new RuntimeException("Error while accessing file: " + animal.getSoundPath(), e);
+            }
+        }).orElseThrow(() -> new RuntimeException("Animal with ID " + id + " not found"));
+    }
+
+    @Override
+    public Resource returnAnimalImagePath(Integer id) {
+        return animalRepository.findById(id).map(animal -> {
+            try {
+                Path file = Paths.get(animal.getImagePath());
+                Resource resource = new UrlResource(file.toUri());
+                if (!resource.exists() || !resource.isReadable()) {
+                    throw new RuntimeException("Image not found or not readable: " + animal.getImagePath());
+                }
+                return resource;
+            } catch (MalformedURLException e) {
+                throw new RuntimeException("Error while accessing image: " + animal.getImagePath(), e);
+            }
+        }).orElseThrow(() -> new RuntimeException("Animal with ID " + id + " not found"));
     }
 }
