@@ -1,9 +1,11 @@
 package com.app.edu.config;
 
-import com.app.edu.utils.SoundManager;
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,16 +15,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class ProjectConfig {
 
     @Bean
-    public OpenAPI myOpenAPI() {
-        License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
+    public OpenAPI openAPI() {
+        return new OpenAPI().addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
+            .components(new Components().addSecuritySchemes("Bearer Authentication", securityScheme()))
+            .info(new Info().title("Edu Ciupi API")
+                      .description("Edu Ciupi API for educational app")
+                      .version("1.0")
+                      .license(new License().name("License of API").url("API license URL")));
+    }
 
-        Info info = new Info()
-            .title("Edu Ciupi API")
-            .version("1.0")
-            .description("This API exposes endpoints for Edu Ciupi Educational App.")
-            .license(mitLicense);
-
-        return new OpenAPI().info(info);
+    private SecurityScheme securityScheme() {
+        return new SecurityScheme()
+            .type(SecurityScheme.Type.HTTP)
+            .scheme("bearer")
+            .bearerFormat("JWT");
     }
 
     @Bean
@@ -33,10 +39,5 @@ public class ProjectConfig {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SoundManager soundManager() {
-        return SoundManager.getInstance();
     }
 }

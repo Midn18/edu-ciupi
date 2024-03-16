@@ -1,16 +1,14 @@
 package com.app.edu.repository;
 
 import com.app.edu.entities.UserEntity;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    public UserEntity findByEmail(String email);
+    Optional<UserEntity> findByUsername(String username);
 
-    public UserEntity findByUsername(String username);
+    boolean existsByEmail(String email);
 
-    public boolean existsByEmail(String email);
-
-    public boolean existsByUsername(String username);
-
+    boolean existsByUsername(String username);
 }
