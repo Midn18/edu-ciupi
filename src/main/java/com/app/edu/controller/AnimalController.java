@@ -38,7 +38,7 @@ public class AnimalController {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/type/{animalType}")
-    public ResponseEntity<List<AnimalDto>> getAnimalsByAnimalType(@PathVariable(required = true) int animalType) {
+    public ResponseEntity<List<AnimalDto>> getAnimalsByAnimalType(@PathVariable int animalType) {
         try {
             AnimalTypeEnum animalTypeEnum = AnimalTypeEnum.values()[animalType];
             List<AnimalDto> animals = animalService.getAnimalsByAnimalType(animalTypeEnum);
@@ -124,5 +124,4 @@ public class AnimalController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 }

@@ -26,6 +26,25 @@ public class EducationalResourceController {
     @Autowired
     EducationalResourceServiceImpl educationalResourceService;
 
+    @Operation(summary = "Retrieve all educational resources")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Resources retrieved"),
+        @ApiResponse(responseCode = "404", description = "There are no resources"),
+        @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllResources() {
+        try {
+            File[] files = educationalResourceService.getAllResources().toArray(new File[0]);
+            if (files.length == 0) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(files);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @Operation(summary = "Download a resource")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Resource downloaded"),

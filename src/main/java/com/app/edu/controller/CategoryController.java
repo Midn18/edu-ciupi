@@ -2,6 +2,7 @@ package com.app.edu.controller;
 
 import com.app.edu.dtos.CategoryDto;
 import com.app.edu.service.CategoryServiceImpl;
+import com.app.edu.utils.AgeCategoryEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,12 +32,14 @@ public class CategoryController {
         @ApiResponse(responseCode = "404", description = "There are no categories", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/")
-    public ResponseEntity<List<CategoryDto>> getCategories(Integer ageCategory) {
+    @GetMapping("/{ageCategory}")
+    public ResponseEntity<List<CategoryDto>> getCategories(@PathVariable int ageCategory) {
         try {
-            List<CategoryDto> categories = categoryService.getCategories(ageCategory);
+            AgeCategoryEnum ageCategoryEnum = AgeCategoryEnum.values()[ageCategory];
+            List<CategoryDto> categories = categoryService.getCategories(ageCategoryEnum);
+
             if (categories.isEmpty()) {
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.notFound().build();
             }
             return ResponseEntity.ok(categories);
         } catch (Exception e) {

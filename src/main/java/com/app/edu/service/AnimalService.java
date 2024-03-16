@@ -7,10 +7,11 @@ import org.springframework.core.io.Resource;
 
 public interface AnimalService {
 
-    public AnimalDto getAnimalById(Integer id);
+    AnimalDto getAnimalById(Integer id);
 
-    public List<AnimalDto> getAnimalsByAnimalType(AnimalTypeEnum animalType);
+    List<AnimalDto> getAnimalsByAnimalType(AnimalTypeEnum animalType);
 
-    public Resource returnAnimalSoundPath(Integer id);
-    public Resource returnAnimalImagePath(Integer id);
+    Resource returnAnimalSoundPath(Integer id);
+
+    Resource returnAnimalImagePath(Integer id);
 }
