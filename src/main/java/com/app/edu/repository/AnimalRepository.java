@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnimalRepository extends JpaRepository<AnimalEntity, Integer> {
 
-    public List<AnimalEntity> findAnimalByAnimalType(AnimalTypeEnum animalType);
+    List<AnimalEntity> findAnimalByAnimalType(AnimalTypeEnum animalType);
 }

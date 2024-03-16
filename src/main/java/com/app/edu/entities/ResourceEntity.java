@@ -1,10 +1,7 @@
 package com.app.edu.entities;
 
-import com.app.edu.utils.AgeCategoryEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -26,7 +23,4 @@ public class ResourceEntity {
 
     @Column(name = "resource_path")
     private String resourcePath;
-
-    @Enumerated(EnumType.ORDINAL)
-    private AgeCategoryEnum category;
 }
