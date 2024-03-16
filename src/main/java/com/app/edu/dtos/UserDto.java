@@ -1,12 +1,15 @@
 package com.app.edu.dtos;
 
+import com.app.edu.utils.AgeCategoryEnum;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserDto {
 
     private Integer id;
@@ -15,5 +18,6 @@ public class UserDto {
     private String lastName;
     private String email;
     private String password;
-    private Integer age;
+    private AgeCategoryEnum ageCategoryEnum;
+    private String token;
 }

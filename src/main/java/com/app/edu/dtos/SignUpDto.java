@@ -1,5 +1,6 @@
 package com.app.edu.dtos;
 
+import com.app.edu.utils.AgeCategoryEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,5 @@ public class SignUpDto {
     private String username;
     private String email;
     private String password;
-    private Integer age;
+    private AgeCategoryEnum ageCategory;
 }

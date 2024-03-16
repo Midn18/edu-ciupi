@@ -4,7 +4,6 @@ import com.app.edu.dtos.AnimalDto;
 import com.app.edu.entities.AnimalEntity;
 import com.app.edu.repository.AnimalRepository;
 import com.app.edu.utils.AnimalTypeEnum;
-import com.app.edu.utils.SoundManager;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,9 +23,6 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Autowired
     private ModelMapper modelMapper;
-
-    @Autowired
-    private SoundManager soundManager;
 
     @Override
     public AnimalDto getAnimalById(Integer id) {
