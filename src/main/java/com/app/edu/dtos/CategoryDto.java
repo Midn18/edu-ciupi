@@ -13,5 +13,6 @@ public class CategoryDto {
     private Integer id;
     private String name;
     private String imagePath;
+    private String description;
     private AgeCategoryEnum ageCategory;
 }

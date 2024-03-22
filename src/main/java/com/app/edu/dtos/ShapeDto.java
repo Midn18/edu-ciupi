@@ -5,5 +5,5 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class FigureDto extends CommonDto {
+public class ShapeDto extends CommonDto {
 }

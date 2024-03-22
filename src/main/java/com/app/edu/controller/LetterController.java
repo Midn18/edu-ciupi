@@ -1,8 +1,7 @@
 package com.app.edu.controller;
 
-import com.app.edu.dtos.AnimalDto;
-import com.app.edu.service.AnimalServiceImpl;
-import com.app.edu.utils.AnimalTypeEnum;
+import com.app.edu.dtos.LetterDto;
+import com.app.edu.service.LetterServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,67 +22,66 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@Tag(name = "Animals", description = "Animals management APIs")
-@RequestMapping("/api/animals")
-public class AnimalController {
+@Tag(name = "Letters", description = "Letters controller")
+@RequestMapping("/api/letter")
+public class LetterController {
 
     @Autowired
-    AnimalServiceImpl animalService;
+    LetterServiceImpl letterService;
 
-    @Operation(summary = "Retrieve all Animals by Animal Type")
+    @Operation(summary = "Retrieve all Letters")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = AnimalDto.class), mediaType = "application/json")}),
-        @ApiResponse(responseCode = "204", description = "There are no animals", content = {
+            @Content(schema = @Schema(implementation = LetterDto.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "There are no letters", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/type/{animalType}")
-    public ResponseEntity<List<AnimalDto>> getAnimalsByAnimalType(@PathVariable int animalType) {
+    @GetMapping("/")
+    public ResponseEntity<List<LetterDto>> getLetters() {
         try {
-            AnimalTypeEnum animalTypeEnum = AnimalTypeEnum.values()[animalType];
-            List<AnimalDto> animals = animalService.getAnimalsByAnimalType(animalTypeEnum);
-            if (animals.isEmpty()) {
-                return ResponseEntity.noContent().build();
+            List<LetterDto> letters = letterService.getAllLetters();
+            if (letters.isEmpty()) {
+                return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(animals);
+            return ResponseEntity.ok(letters);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Retrieve an Animal by id")
+    @Operation(summary = "Retrieve a Letter by id")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = AnimalDto.class), mediaType = "application/json")}),
-        @ApiResponse(responseCode = "404", description = "Animal not found", content = {
+            @Content(schema = @Schema(implementation = LetterDto.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "Letter not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/{id}")
-    public ResponseEntity<AnimalDto> getAnimalById(@PathVariable Integer id) {
+    public ResponseEntity<LetterDto> getLetterById(Integer id) {
         try {
-            AnimalDto animal = animalService.getAnimalById(id);
-            if (animal == null) {
-                return ResponseEntity.noContent().build();
+            LetterDto letter = letterService.getLetterById(id);
+            if (letter == null) {
+                return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(animal);
+            return ResponseEntity.ok(letter);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Get an animal sound file by ID")
+    @Operation(summary = "Retrieve sound path for a letter")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Sound file returned successfully", content = {
             @Content(mediaType = "audio/mpeg")}),
-        @ApiResponse(responseCode = "404", description = "Animal not found"),
-        @ApiResponse(responseCode = "500", description = "Internal Server Error")
-    })
-    @GetMapping(value = "/animalSound/{id}")
-    public ResponseEntity<Resource> returnAnimalSoundPath(@PathVariable Integer id) {
+        @ApiResponse(responseCode = "404", description = "Letter not found", content = {
+            @Content(schema = @Schema())}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @GetMapping("/letterSound/{id}")
+    public ResponseEntity<Resource> returnLetterSoundPath(@PathVariable Integer id) {
         try {
-            Resource soundResource = animalService.returnSoundPath(id);
+            Resource soundResource = letterService.returnSoundPath(id);
             if (soundResource == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Animal not found");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Letter not found");
             }
 
             String filename = soundResource.getFilename();
@@ -98,19 +96,19 @@ public class AnimalController {
         }
     }
 
-    @Operation(summary = "Get an animal image file by ID")
+    @Operation(summary = "Retrieve image path for a letter")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Image file returned successfully", content = {
             @Content(mediaType = "image/png")}),
-        @ApiResponse(responseCode = "404", description = "Animal not found"),
-        @ApiResponse(responseCode = "500", description = "Internal Server Error")
-    })
-    @GetMapping(value = "/animalImage/{id}")
-    public ResponseEntity<Resource> returnAnimalImagePath(@PathVariable Integer id) {
+        @ApiResponse(responseCode = "404", description = "Letter not found", content = {
+            @Content(schema = @Schema())}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @GetMapping("/letterImage/{id}")
+    public ResponseEntity<Resource> returnLetterImagePath(@PathVariable Integer id) {
         try {
-            Resource imageResource = animalService.returnImagePath(id);
+            Resource imageResource = letterService.returnImagePath(id);
             if (imageResource == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Animal not found");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Letter not found");
             }
 
             String filename = imageResource.getFilename();
@@ -125,3 +123,4 @@ public class AnimalController {
         }
     }
 }
+

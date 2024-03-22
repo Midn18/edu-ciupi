@@ -16,7 +16,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AnimalServiceImpl implements AnimalService {
+public class AnimalServiceImpl implements AnimalService, MediaResourceService {
 
     @Autowired
     private AnimalRepository animalRepository;
@@ -41,7 +41,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Resource returnAnimalSoundPath(Integer id) {
+    public Resource returnSoundPath(Integer id) {
         return animalRepository.findById(id).map(animal -> {
             try {
                 Path file = Paths.get(animal.getSoundPath());
@@ -57,7 +57,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Resource returnAnimalImagePath(Integer id) {
+    public Resource returnImagePath(Integer id) {
         return animalRepository.findById(id).map(animal -> {
             try {
                 Path file = Paths.get(animal.getImagePath());
