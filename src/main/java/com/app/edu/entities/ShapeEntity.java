@@ -4,6 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "e_figure")
-public class FigureEntity extends CommonEntity {
+@Table(name = "e_shape")
+public class ShapeEntity extends CommonEntity {
 }
