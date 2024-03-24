@@ -38,28 +38,33 @@ public class UserAuthenticationProvider {
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         return JWT.create()
-            .withSubject(user.getUsername())
             .withIssuedAt(now)
             .withExpiresAt(validity)
+            .withClaim("id", user.getId().toString())
+            .withClaim("username", user.getUsername())
             .withClaim("firstName", user.getFirstName())
             .withClaim("lastName", user.getLastName())
             .sign(algorithm);
     }
 
     public Authentication validateToken(String token) {
-        Algorithm algorithm = Algorithm.HMAC256(secretKey);
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
-        JWTVerifier verifier = JWT.require(algorithm).build();
+            JWTVerifier verifier = JWT.require(algorithm).build();
 
-        DecodedJWT decoded = verifier.verify(token);
+            DecodedJWT decoded = verifier.verify(token);
 
-        UserDto user = UserDto.builder()
-            .username(decoded.getSubject())
-            .firstName(decoded.getClaim("firstName").asString())
-            .lastName(decoded.getClaim("lastName").asString())
-            .build();
+            UserDto user = UserDto.builder()
+                .username(decoded.getClaim("username").asString())
+                .firstName(decoded.getClaim("firstName").asString())
+                .lastName(decoded.getClaim("lastName").asString())
+                .build();
 
-        return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+            return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public Authentication validateTokenStrongly(String token) {

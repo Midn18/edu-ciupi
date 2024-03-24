@@ -27,6 +27,9 @@ public class CategoryEntity {
     @Column(name = "image_path")
     private String imagePath;
 
+    @Column(name = "description")
+    private String description;
+
     @Enumerated(EnumType.ORDINAL)
     private AgeCategoryEnum ageCategory;
 }

@@ -5,5 +5,5 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum AnimalTypeEnum {
     DOMESTIC,
-    WILD;
+    WILD
 }
