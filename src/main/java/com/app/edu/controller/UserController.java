@@ -3,6 +3,7 @@ package com.app.edu.controller;
 import com.app.edu.config.UserAuthenticationProvider;
 import com.app.edu.dtos.LoginDto;
 import com.app.edu.dtos.SignUpDto;
+import com.app.edu.dtos.TokenDto;
 import com.app.edu.dtos.UserDto;
 import com.app.edu.service.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,22 +42,22 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody @Valid SignUpDto signUpDto) {
         UserDto createdUser = userServiceImpl.createUser(signUpDto);
-        createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }
 
     @Operation(summary = "Login User")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = UserDto.class), mediaType = "application/json")}),
+            @Content(schema = @Schema(implementation = String.class), mediaType = "application/json")}),
         @ApiResponse(responseCode = "404", description = "User not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @PostMapping("/login")
-    public ResponseEntity<UserDto> loginUser(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<TokenDto> loginUser(@RequestBody LoginDto loginDto) {
         UserDto userDto = userServiceImpl.loginUser(loginDto);
-        userDto.setToken(userAuthenticationProvider.createToken(userDto));
-        return ResponseEntity.ok(userDto);
+        TokenDto token = new TokenDto();
+        token.setToken(userAuthenticationProvider.createToken(userDto));
+        return ResponseEntity.ok(token);
     }
 
     @Operation(summary = "Retrieve User by id")
