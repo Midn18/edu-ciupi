@@ -66,8 +66,13 @@ public class DataLoader {
                 + "/scienceCategory.png", "Aici vei putea studia științele", AGE_6_7));
 
             // educational resources
-            educationalResourceRepository.save(new ResourceEntity(1, "Test resource", "src/main/resources/static/educationalResources/TestResource.pdf"));
-            educationalResourceRepository.save(new ResourceEntity(2, "Omida Mâncăcioasă", "src/main/resources/static/educationalResources/OmidaMancacioasa.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(1, "Fișa distractivă", "src/main/resources/static/educationalResources/TestResource.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(2, "Omida Flămândă", "src/main/resources/static/educationalResources/OmidaMancacioasa.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(3, "Alfabetul Disney", "src/main/resources/static/educationalResources/AlfabetulDisney.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(4, "Căsuța cu cifre", "src/main/resources/static/educationalResources/CasutaCuCifre.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(5, "Învățăm cifrele", "src/main/resources/static/educationalResources/InvatamCifrele.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(6, "Cifre de colorat", "src/main/resources/static/educationalResources/CifreDeColorat.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(7, "Litere de tipar", "src/main/resources/static/educationalResources/LitereDeTipar.pdf"));
         };
     }
 }
