@@ -73,6 +73,11 @@ public class DataLoader {
             educationalResourceRepository.save(new ResourceEntity(5, "Învățăm cifrele", "src/main/resources/static/educationalResources/InvatamCifrele.pdf"));
             educationalResourceRepository.save(new ResourceEntity(6, "Cifre de colorat", "src/main/resources/static/educationalResources/CifreDeColorat.pdf"));
             educationalResourceRepository.save(new ResourceEntity(7, "Litere de tipar", "src/main/resources/static/educationalResources/LitereDeTipar.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(8, "Coloreaza Animalele", "src/main/resources/static/educationalResources/ColoreazaAnimalele.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(9, "Desenează Oița", "src/main/resources/static/educationalResources/DeseneazaOița.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(10, "Drumul Viorii", "src/main/resources/static/educationalResources/DrumulViorii.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(11, "Figuri geometrice", "src/main/resources/static/educationalResources/FiguriGeometrice.pdf"));
+            educationalResourceRepository.save(new ResourceEntity(12, "Coloreaza Oul", "src/main/resources/static/educationalResources/OulDePasti.pdf"));
         };
     }
 }
