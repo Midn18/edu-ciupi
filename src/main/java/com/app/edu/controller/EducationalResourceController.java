@@ -1,5 +1,6 @@
 package com.app.edu.controller;
 
+import com.app.edu.dtos.ResourceDto;
 import com.app.edu.service.EducationalResourceServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -35,11 +37,11 @@ public class EducationalResourceController {
     @GetMapping("/all")
     public ResponseEntity<?> getAllResources() {
         try {
-            File[] files = educationalResourceService.getAllResources().toArray(new File[0]);
-            if (files.length == 0) {
+            List<ResourceDto> resources = educationalResourceService.getAllResources();
+            if (resources.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(files);
+            return ResponseEntity.ok(resources);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
