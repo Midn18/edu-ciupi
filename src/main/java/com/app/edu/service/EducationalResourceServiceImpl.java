@@ -1,5 +1,6 @@
 package com.app.edu.service;
 
+import com.app.edu.dtos.ResourceDto;
 import com.app.edu.entities.ResourceEntity;
 import com.app.edu.repository.EducationalResourceRepository;
 import java.io.File;
@@ -17,16 +18,16 @@ public class EducationalResourceServiceImpl implements EducationalResourceServic
     private EducationalResourceRepository educationalResourceRepository;
 
     @Override
-    public List<File> getAllResources() {
+    public List<ResourceDto> getAllResources() {
         List<ResourceEntity> resourceEntities = educationalResourceRepository.findAll();
-        List<File> files = new ArrayList<>();
+        List<ResourceDto> dtos = new ArrayList<>();
         for (ResourceEntity resourceEntity : resourceEntities) {
             File file = new File(resourceEntity.getResourcePath());
-            if (file.exists()) {
-                files.add(file);
+            if (file.exists() && file.getName().endsWith(".pdf")) {
+                dtos.add(new ResourceDto(resourceEntity.getId(), resourceEntity.getName(), resourceEntity.getResourcePath()));
             }
         }
-        return files;
+        return dtos;
     }
 
     @Override
