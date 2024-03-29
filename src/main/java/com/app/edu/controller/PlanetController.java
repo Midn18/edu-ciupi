@@ -1,7 +1,7 @@
 package com.app.edu.controller;
 
-import com.app.edu.dtos.LetterDto;
-import com.app.edu.service.LetterServiceImpl;
+import com.app.edu.dtos.PlanetDto;
+import com.app.edu.service.PlanetServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,105 +22,100 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@Tag(name = "Letters", description = "Letters controller")
-@RequestMapping("/api/letter")
-public class LetterController {
+@Tag(name = "Planets", description = "Planets controller")
+@RequestMapping("/api/planet")
+public class PlanetController {
 
     @Autowired
-    LetterServiceImpl letterService;
+    PlanetServiceImpl planetService;
 
-    @Operation(summary = "Retrieve all Letters")
+    @Operation(summary = "Retrieve all planets")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = LetterDto.class), mediaType = "application/json")}),
-        @ApiResponse(responseCode = "404", description = "There are no letters", content = {
+            @Content(schema = @Schema(implementation = PlanetDto.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "There are no planets", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/all")
-    public ResponseEntity<List<LetterDto>> getLetters() {
+    public ResponseEntity<List<PlanetDto>> getPlanets() {
         try {
-            List<LetterDto> letters = letterService.getAllLetters();
-            if (letters.isEmpty()) {
+            List<PlanetDto> planets = planetService.getAllPlanets();
+            if (planets.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(letters);
+            return ResponseEntity.ok(planets);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Retrieve a Letter by id")
+    @Operation(summary = "Retrieve a Planet by id")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = LetterDto.class), mediaType = "application/json")}),
-        @ApiResponse(responseCode = "404", description = "Letter not found", content = {
+            @Content(schema = @Schema(implementation = PlanetDto.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "Planet not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/{id}")
-    public ResponseEntity<LetterDto> getLetterById(Integer id) {
+    public ResponseEntity<PlanetDto> getSpecificPlanetById(@PathVariable Integer id) {
         try {
-            LetterDto letter = letterService.getLetterById(id);
-            if (letter == null) {
+            PlanetDto planet = planetService.getPlanetById(id);
+            if (planet == null) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(letter);
+            return ResponseEntity.ok(planet);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Retrieve sound path for a letter")
+    @Operation(summary = "Retrieve sound path for a planet")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Sound file returned successfully", content = {
             @Content(mediaType = "audio/mpeg")}),
-        @ApiResponse(responseCode = "404", description = "Letter not found", content = {
+        @ApiResponse(responseCode = "404", description = "Sound not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/letterSound/{id}")
-    public ResponseEntity<Resource> returnLetterSoundPath(@PathVariable Integer id) {
+    @GetMapping("/planetSound/{id}")
+    public ResponseEntity<?> getPlanetSoundPath(@PathVariable Integer id) {
         try {
-            Resource soundResource = letterService.returnSoundPath(id);
-            if (soundResource == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Letter not found");
+            Resource resource = planetService.returnSoundPath(id);
+            if (resource == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Planet not found");
             }
 
-            String filename = soundResource.getFilename();
+            String filename = resource.getFilename();
             return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("audio/mpeg"))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + filename + "\"")
-                .body(soundResource);
-        } catch (ResponseStatusException e) {
-            throw e;
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
+                .body(resource);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Retrieve image path for a letter")
+    @Operation(summary = "Retrieve image path for a planet")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Image file returned successfully", content = {
             @Content(mediaType = "image/png")}),
-        @ApiResponse(responseCode = "404", description = "Letter not found", content = {
+        @ApiResponse(responseCode = "404", description = "Planet not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/letterImage/{id}")
-    public ResponseEntity<Resource> returnLetterImagePath(@PathVariable Integer id) {
+    @GetMapping("/planetImage/{id}")
+    public ResponseEntity<?> getPlanetImagePath(@PathVariable Integer id) {
         try {
-            Resource imageResource = letterService.returnImagePath(id);
-            if (imageResource == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Letter not found");
+            Resource resource = planetService.returnImagePath(id);
+            if (resource == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Planet not found");
             }
 
-            String filename = imageResource.getFilename();
+            String filename = resource.getFilename();
             return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("image/png"))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + filename + "\"")
-                .body(imageResource);
-        } catch (ResponseStatusException e) {
-            throw e;
+                .body(resource);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
-
