@@ -36,7 +36,7 @@ public class NumberController {
         @ApiResponse(responseCode = "404", description = "There are no numbers", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<List<NumberDto>> getNumbers() {
         try {
             List<NumberDto> numbers = numberService.getAllNumbers();

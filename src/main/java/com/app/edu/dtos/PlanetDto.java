@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ScienceDto extends CommonDto {
+public class PlanetDto extends CommonDto {
 
     private String description;
 }

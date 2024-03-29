@@ -7,10 +7,12 @@ import static com.app.edu.utils.AnimalTypeEnum.WILD;
 
 import com.app.edu.entities.AnimalEntity;
 import com.app.edu.entities.CategoryEntity;
+import com.app.edu.entities.PlanetEntity;
 import com.app.edu.entities.ResourceEntity;
 import com.app.edu.repository.AnimalRepository;
 import com.app.edu.repository.CategoryRepository;
 import com.app.edu.repository.EducationalResourceRepository;
+import com.app.edu.repository.PlanetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +25,7 @@ public class DataLoader {
     @Autowired AnimalRepository animalRepository;
     @Autowired CategoryRepository categoryRepository;
     @Autowired EducationalResourceRepository educationalResourceRepository;
+    @Autowired PlanetsRepository planetRepository;
 
     @Bean
     @Profile("dev")
@@ -78,6 +81,25 @@ public class DataLoader {
             educationalResourceRepository.save(new ResourceEntity(10, "Drumul Viorii", "src/main/resources/static/educationalResources/DrumulViorii.pdf"));
             educationalResourceRepository.save(new ResourceEntity(11, "Figuri geometrice", "src/main/resources/static/educationalResources/FiguriGeometrice.pdf"));
             educationalResourceRepository.save(new ResourceEntity(12, "Coloreaza Oul", "src/main/resources/static/educationalResources/OulDePasti.pdf"));
+
+            // planets
+            planetRepository.save(new PlanetEntity(1, "Mercur", "src/main/resources/static/sounds/planetsSounds/mercurySound.wav",
+                                                   "src/main/resources/static/images/planetsImages/mercuryImage.png", "Mercur este cel mai aproape de Soare"));
+            planetRepository.save(new PlanetEntity(2, "Venus", "src/main/resources/static/sounds/planetsSounds/venusSound.wav",
+                                                    "src/main/resources/static/images/planetsImages/venusImage.png", "Venus este cel mai aproape de Pământ"));
+            planetRepository.save(new PlanetEntity(3, "Pământ", "src/main/resources/static/sounds/planetsSounds/earthSound.wav",
+                                                    "src/main/resources/static/images/planetsImages/earthImage.png", "Pământul este planeta noastră"));
+            planetRepository.save(new PlanetEntity(4, "Marte", "src/main/resources/static/sounds/planetsSounds/marsSound.wav",
+                                                    "src/main/resources/static/images/planetsImages/marsImage.png", "Marte este planeta roșie"));
+            planetRepository.save(new PlanetEntity(5, "Jupiter", "src/main/resources/static/sounds/planetsSounds/jupiterSound.wav",
+                                                    "src/main/resources/static/images/planetsImages/jupiterImage.png", "Jupiter este cel mai mare planetă"));
+            planetRepository.save(new PlanetEntity(6, "Saturn", "src/main/resources/static/sounds/planetsSounds/saturnSound.wav",
+                                                    "src/main/resources/static/images/planetsImages/saturnImage.png", "Saturn are inele"));
+            planetRepository.save(new PlanetEntity(7, "Uranus", "src/main/resources/static/sounds/planetsSounds/uranusSound.wav",
+                                                    "src/main/resources/static/images/planetsImages/uranusImage.png", "Uranus este o planetă ciudată"));
+            planetRepository.save(new PlanetEntity(8, "Neptun", "src/main/resources/static/sounds/planetsSounds/neptuneSound.wav",
+                                                    "src/main/resources/static/images/planetsImages/neptuneImage.png", "Neptun este cel mai îndepărtat de Soare"));
+
         };
     }
 }

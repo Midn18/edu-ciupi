@@ -36,7 +36,7 @@ public class ShapeController {
         @ApiResponse(responseCode = "404", description = "There are no shapes", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<List<ShapeDto>> getShapes() {
         try {
             List<ShapeDto> shapes = shapeService.getAllShapes();
