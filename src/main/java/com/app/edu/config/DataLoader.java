@@ -9,10 +9,12 @@ import com.app.edu.entities.AnimalEntity;
 import com.app.edu.entities.CategoryEntity;
 import com.app.edu.entities.PlanetEntity;
 import com.app.edu.entities.ResourceEntity;
+import com.app.edu.entities.ShapeEntity;
 import com.app.edu.repository.AnimalRepository;
 import com.app.edu.repository.CategoryRepository;
 import com.app.edu.repository.EducationalResourceRepository;
 import com.app.edu.repository.PlanetsRepository;
+import com.app.edu.repository.ShapeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +28,7 @@ public class DataLoader {
     @Autowired CategoryRepository categoryRepository;
     @Autowired EducationalResourceRepository educationalResourceRepository;
     @Autowired PlanetsRepository planetRepository;
+    @Autowired ShapeRepository shapeRepository;
 
     @Bean
     @Profile("dev")
@@ -100,6 +103,11 @@ public class DataLoader {
             planetRepository.save(new PlanetEntity(8, "Neptun", "src/main/resources/static/sounds/planetsSounds/neptuneSound.wav",
                                                     "src/main/resources/static/images/planetsImages/neptuneImage.png", "Neptun este cel mai îndepărtat de Soare"));
 
+            // shapes
+            shapeRepository.save(new ShapeEntity(1, "Cerc","src/main/resources/static/sounds/shapesSounds/circleSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/circleImage.png"));
+            shapeRepository.save(new ShapeEntity(2, "Triunghi","src/main/resources/static/sounds/shapesSounds/triangleSound.wav",
+                                                    "src/main/resources/static/images/shapesImages/triangleImage.png"));
         };
     }
 }
