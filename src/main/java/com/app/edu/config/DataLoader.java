@@ -7,12 +7,14 @@ import static com.app.edu.utils.AnimalTypeEnum.WILD;
 
 import com.app.edu.entities.AnimalEntity;
 import com.app.edu.entities.CategoryEntity;
+import com.app.edu.entities.ColorEntity;
 import com.app.edu.entities.LetterEntity;
 import com.app.edu.entities.PlanetEntity;
 import com.app.edu.entities.ResourceEntity;
 import com.app.edu.entities.ShapeEntity;
 import com.app.edu.repository.AnimalRepository;
 import com.app.edu.repository.CategoryRepository;
+import com.app.edu.repository.ColorsRepository;
 import com.app.edu.repository.EducationalResourceRepository;
 import com.app.edu.repository.LetterRepository;
 import com.app.edu.repository.PlanetsRepository;
@@ -32,6 +34,7 @@ public class DataLoader {
     @Autowired PlanetsRepository planetRepository;
     @Autowired ShapeRepository shapeRepository;
     @Autowired LetterRepository letterRepository;
+    @Autowired ColorsRepository colorsRepository;
 
     @Bean
     @Profile("dev")
@@ -169,6 +172,12 @@ public class DataLoader {
                                                     "src/main/resources/static/images/lettersImages/yImage.png"));
             letterRepository.save(new LetterEntity(28, "Z", "src/main/resources/static/sounds/lettersSounds/Z.wav",
                                                     "src/main/resources/static/images/lettersImages/zImage.png"));
+
+            // colors
+            colorsRepository.save(new ColorEntity(1, "Roșu", "src/main/resources/static/sounds/colorsSounds/redSound.wav",
+                                                  "src/main/resources/static/images/colorsImages/red.png"));
+            colorsRepository.save(new ColorEntity(2, "Albastru", "src/main/resources/static/sounds/colorsSounds/blueSound.wav",
+                                                  "src/main/resources/static/images/colorsImages/blue.png"));
         };
     }
 }
