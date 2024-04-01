@@ -57,7 +57,7 @@ public class NumberController {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/{id}")
-    public ResponseEntity<NumberDto> getNumberById(Integer id) {
+    public ResponseEntity<NumberDto> getNumberById(@PathVariable Integer id) {
         try {
             NumberDto number = numberService.getNumberById(id);
             if (number == null) {

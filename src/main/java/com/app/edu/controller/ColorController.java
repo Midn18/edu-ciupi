@@ -57,7 +57,7 @@ public class ColorController {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/{id}")
-    public ResponseEntity<ColorDto> getColorById(Integer id) {
+    public ResponseEntity<ColorDto> getColorById(@PathVariable Integer id) {
         try {
             ColorDto color = colorService.getColorById(id);
             if (color == null) {
