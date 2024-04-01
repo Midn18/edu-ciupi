@@ -95,22 +95,102 @@ public class DataLoader {
             educationalResourceRepository.save(new ResourceEntity(12, "Coloreaza Oul", "src/main/resources/static/educationalResources/OulDePasti.pdf"));
 
             // planets
-            planetRepository.save(new PlanetEntity(1, "Mercur", "src/main/resources/static/sounds/planetsSounds/mercurySound.wav",
-                                                   "src/main/resources/static/images/planetsImages/mercuryImage.png", "Mercur este cel mai aproape de Soare"));
-            planetRepository.save(new PlanetEntity(2, "Venus", "src/main/resources/static/sounds/planetsSounds/venusSound.wav",
-                                                    "src/main/resources/static/images/planetsImages/venusImage.png", "Venus este cel mai aproape de Pământ"));
-            planetRepository.save(new PlanetEntity(3, "Pământ", "src/main/resources/static/sounds/planetsSounds/earthSound.wav",
-                                                    "src/main/resources/static/images/planetsImages/earthImage.png", "Pământul este planeta noastră"));
-            planetRepository.save(new PlanetEntity(4, "Marte", "src/main/resources/static/sounds/planetsSounds/marsSound.wav",
-                                                    "src/main/resources/static/images/planetsImages/marsImage.png", "Marte este planeta roșie"));
-            planetRepository.save(new PlanetEntity(5, "Jupiter", "src/main/resources/static/sounds/planetsSounds/jupiterSound.wav",
-                                                    "src/main/resources/static/images/planetsImages/jupiterImage.png", "Jupiter este cel mai mare planetă"));
-            planetRepository.save(new PlanetEntity(6, "Saturn", "src/main/resources/static/sounds/planetsSounds/saturnSound.wav",
-                                                    "src/main/resources/static/images/planetsImages/saturnImage.png", "Saturn are inele"));
-            planetRepository.save(new PlanetEntity(7, "Uranus", "src/main/resources/static/sounds/planetsSounds/uranusSound.wav",
-                                                    "src/main/resources/static/images/planetsImages/uranusImage.png", "Uranus este o planetă ciudată"));
-            planetRepository.save(new PlanetEntity(8, "Neptun", "src/main/resources/static/sounds/planetsSounds/neptuneSound.wav",
-                                                    "src/main/resources/static/images/planetsImages/neptuneImage.png", "Neptun este cel mai îndepărtat de Soare"));
+            planetRepository.save(new PlanetEntity(
+                1,
+                "Mercur",
+                "src/main/resources/static/sounds/planetsSounds/mercurySound.wav",
+                "src/main/resources/static/images/planetsImages/mercuryImage.png",
+                "Mercur - Planeta Ceasornicului. Mercur este cea mai mică planetă din "
+                    + "sistemul nostru solar! Mercur este cunoscută și ca \"Planeta "
+                    + "Ceasornicului\" pentru că are cele mai scurte zile și nopți. Este "
+                    + "foarte aproape de Soare, așa că este foarte fierbinte acolo. Mercur "
+                    + "este o planetă mică, dar plină de surprize și mistere care așteaptă "
+                    + "să fie dezvăluite!"));
+            planetRepository.save(new PlanetEntity(
+                2,
+                "Venus",
+                "src/main/resources/static/sounds/planetsSounds/venusSound.wav",
+                "src/main/resources/static/images/planetsImages/venusImage.png",
+                "Venus: Planeta Caldă și Strălucitoare. Salut, copii! Haideți să descoperim Venus, o planetă extraordinară din "
+                    + "sistemul nostru solar! Venus este cea mai strălucitoare planetă de pe cerul nopții și este plină de "
+                    + "mister. Este cunoscută și ca \"planeta gemenă\" a Pământului pentru că are dimensiuni similare. Pe Venus"
+                    + " este foarte cald, iar cerul este mereu acoperit de nori. Este o planetă fascinantă de explorat!"));
+            planetRepository.save(new PlanetEntity(
+                3,
+                "Pământ",
+                "src/main/resources/static/sounds/planetsSounds/earthSound.wav",
+                "src/main/resources/static/images/planetsImages/earthImage.png",
+                "Cum arată Pământul? Pământul este rotund ca o minge mare. Când privim cerul, putem vedea un albastru frumos "
+                    + "care se numește cerul. Dar, știi ce? Pământul este acoperit și cu ceva special numit \"teren\". Acest "
+                    + "teren include munți, câmpii, oceane și multe altele! Pământul este unic pentru că este singura planetă "
+                    + "cunoscută care găzduiește viață. Aici, avem plante, animale și oameni. Plantele ne oferă oxigen, iar "
+                    + "animalele sunt prietenii noștri. Și, desigur, oamenii, precum noi, trăiesc pe Pământ și își construiesc "
+                    + "casele și orașele pentru a locui împreună."));
+            planetRepository.save(new PlanetEntity(
+                4,
+                "Marte",
+                "src/main/resources/static/sounds/planetsSounds/marsSound.wav",
+                "src/main/resources/static/images/planetsImages/marsImage.png",
+                "Marte - Planeta Roșie. Marte este cunoscută și ca \"Planeta Roșie\"! Marte este a patra planetă de la Soare și"
+                    + " este foarte interesantă pentru că oamenii au trimis roboți și nave spațiale să o exploreze. Are un "
+                    + "aspect stâncos și arid, iar uneori cerul său pare roz sau portocaliu. Marte este o planetă cu multe "
+                    + "mistere și poate, doar poate, există viață acolo!"));
+            planetRepository.save(new PlanetEntity(
+                5,
+                "Jupiter",
+                "src/main/resources/static/sounds/planetsSounds/jupiterSound.wav",
+                "src/main/resources/static/images/planetsImages/jupiterImage.png",
+                "Jupiter - Regele Planetelor.Jupiter este regele planetelor din sistemul nostru solar! Jupiter este cea mai "
+                    + "mare planetă din sistemul nostru solar și are un aspect incredibil cu dungile sale colorate. Este "
+                    + "cunoscut pentru marea sa viteză de rotație și pentru marii săi sateliți, cum ar fi Io și Europa. Jupiter"
+                    + " este o planetă plină de surprize și este întotdeauna fascinantă de explorat!"));
+            planetRepository.save(new PlanetEntity(
+                6,
+                "Saturn",
+                "src/main/resources/static/sounds/planetsSounds/saturnSound.wav",
+                "src/main/resources/static/images/planetsImages/saturnImage.png",
+                "Saturn - planeta Cu Inele Frumoase. Saturn este o planetă cu inele frumoase! Saturn este cunoscută pentru "
+                    + "inelele sale, care sunt formate din bucăți de gheață și stâncă. Este a doua cea mai mare planetă din "
+                    + "sistemul nostru solar și are o culoare galbenă strălucitoare. Saturn este o planetă fascinantă și "
+                    + "spectaculoasă, care ne încântă mereu cu frumusețea sa!"));
+            planetRepository.save(new PlanetEntity(
+                7,
+                "Uranus",
+                "src/main/resources/static/sounds/planetsSounds/uranusSound.wav",
+                "src/main/resources/static/images/planetsImages/uranusImage.png",
+                "Uranus - Planeta înclinată. Haideți să explorăm Uranus, o planetă ciudată și înclinată din sistemul nostru "
+                    + "solar! Uranus este unică pentru că este înclinată pe o parte, ceea ce înseamnă că polii săi nordici și "
+                    + "sudici primesc mai multă lumină solară în timpul anului. Este cunoscută pentru culoarea sa "
+                    + "albastră-verzuie și pentru faptul că are inele și sateliți fascinanți. Uranus este o planetă care ne "
+                    + "surprinde mereu cu misterele sale!"));
+            planetRepository.save(new PlanetEntity(
+                8,
+                "Neptun",
+                "src/main/resources/static/sounds/planetsSounds/neptuneSound.wav",
+                "src/main/resources/static/images/planetsImages/neptuneImage.png",
+                "Neptun - Planeta Rece și Albastră. Neptune este o planetă fermecătoare și îndepărtată din sistemul nostru "
+                    + "solar! Neptune este cunoscută pentru culoarea sa albastră strălucitoare și pentru faptul că este foarte "
+                    + "frig acolo. Este ceațoasă și misterioasă, cu vânturi puternice care suflă prin atmosfera sa. Neptune "
+                    + "este o planetă cu multe secrete care așteaptă să fie descoperite!"));
+            planetRepository.save(new PlanetEntity(
+                9,
+                "Soarele",
+                "src/main/resources/static/sounds/planetsSounds/sunSound.wav",
+                "src/main/resources/static/images/planetsImages/sunImage.png",
+                "Soarele este sursa noastră de lumină și căldură! Soarele este o stea mare și strălucitoare care ne luminează "
+                    + "ziua și ne încălzește planeta. Este centrul sistemului nostru solar și este atât de fierbinte încât "
+                    + "produce energia necesară pentru viață pe Pământ. Soarele este cu adevărat minunat și merită să ne "
+                    + "bucurăm mereu de lumina și căldura sa!"));
+            planetRepository.save(new PlanetEntity(
+                10,
+                "Calea Lactee",
+                "src/main/resources/static/sounds/planetsSounds/milkywaySound.wav",
+                "src/main/resources/static/images/planetsImages/milkywayImage.png",
+                "Calea Lactee: Galaxia Noastră. Calea Lactee este casa noastră în Univers! Calea Lactee este o galaxie uriașă, "
+                    + "plină de sute de miliarde de stele, planete și alte obiecte cerești. Este ceea ce vedem pe cerul nopții "
+                    + "sub formă de o bandă luminoasă albăstruie. Calea Lactee este o casă minunată pentru noi și pentru multe "
+                    + "alte ființe din Univers!"
+            ));
 
             // shapes
             shapeRepository.save(new ShapeEntity(1, "Cerc","src/main/resources/static/sounds/shapesSounds/circleSound.wav",
