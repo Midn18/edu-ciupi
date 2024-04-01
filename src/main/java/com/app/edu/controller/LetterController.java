@@ -57,7 +57,7 @@ public class LetterController {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/{id}")
-    public ResponseEntity<LetterDto> getLetterById(Integer id) {
+    public ResponseEntity<LetterDto> getLetterById(@PathVariable Integer id) {
         try {
             LetterDto letter = letterService.getLetterById(id);
             if (letter == null) {

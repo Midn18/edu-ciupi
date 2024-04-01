@@ -9,6 +9,7 @@ import com.app.edu.entities.AnimalEntity;
 import com.app.edu.entities.CategoryEntity;
 import com.app.edu.entities.ColorEntity;
 import com.app.edu.entities.LetterEntity;
+import com.app.edu.entities.MathEntity;
 import com.app.edu.entities.PlanetEntity;
 import com.app.edu.entities.ResourceEntity;
 import com.app.edu.entities.ShapeEntity;
@@ -17,6 +18,7 @@ import com.app.edu.repository.CategoryRepository;
 import com.app.edu.repository.ColorsRepository;
 import com.app.edu.repository.EducationalResourceRepository;
 import com.app.edu.repository.LetterRepository;
+import com.app.edu.repository.MathRepository;
 import com.app.edu.repository.PlanetsRepository;
 import com.app.edu.repository.ShapeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,7 @@ public class DataLoader {
     @Autowired ShapeRepository shapeRepository;
     @Autowired LetterRepository letterRepository;
     @Autowired ColorsRepository colorsRepository;
+    @Autowired MathRepository mathRepository;
 
     @Bean
     @Profile("dev")
@@ -178,6 +181,20 @@ public class DataLoader {
                                                   "src/main/resources/static/images/colorsImages/red.png"));
             colorsRepository.save(new ColorEntity(2, "Albastru", "src/main/resources/static/sounds/colorsSounds/blueSound.wav",
                                                   "src/main/resources/static/images/colorsImages/blue.png"));
+
+            // exercises
+            mathRepository.save(new MathEntity(1, "1+1", "src/main/resources/static/sounds/mathSounds/1+1.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/one_plus_one.png",
+                                               "Dacă Ana are un măr și primește încă unul de la mama ei, câte mere are Ana acum?", "2"));
+            mathRepository.save(new MathEntity(2, "1+0", "src/main/resources/static/sounds/mathSounds/1+0.wav",
+                                                  "src/main/resources/static/images/mathExercisesImages/one_plus_zero.png",
+                                                  "Dacă Ionuț are un balon și nu primește niciunul în plus, câte baloane are Ionuț?", "1"));
+            mathRepository.save(new MathEntity(3, "0+1", "src/main/resources/static/sounds/mathSounds/0+1.wav",
+                                                    "src/main/resources/static/images/mathExercisesImages/zero_plus_one.png",
+                                                    "Dacă Andreea nu are niciun sticker și primește unul de la prietena ei, câte stickere are Andreea acum?", "1"));
+            mathRepository.save(new MathEntity(4, "1+2", "src/main/resources/static/sounds/mathSounds/1+2.wav",
+                                                    "src/main/resources/static/images/mathExercisesImages/one_plus_two.png",
+                                                    "Dacă Mihai are un joc video și primește încă două de ziua lui, câte jocuri video are Mihai acum?", "3"));
         };
     }
 }

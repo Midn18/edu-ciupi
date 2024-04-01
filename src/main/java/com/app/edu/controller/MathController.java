@@ -1,7 +1,7 @@
 package com.app.edu.controller;
 
-import com.app.edu.dtos.ShapeDto;
-import com.app.edu.service.ShapeServiceImpl;
+import com.app.edu.dtos.MathDto;
+import com.app.edu.service.MathServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,98 +17,114 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@Tag(name = "Shapes", description = "Shapes controller")
-@RequestMapping("/api/shape")
-public class ShapeController {
+@Tag(name = "Math", description = "Math controller")
+@RequestMapping("/api/math")
+public class MathController {
 
     @Autowired
-    ShapeServiceImpl shapeService;
+    private MathServiceImpl mathService;
 
-    @Operation(summary = "Retrieve all shapes")
+    @Operation(summary = "Retrieve all Math problems")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = ShapeDto.class), mediaType = "application/json")}),
-        @ApiResponse(responseCode = "404", description = "There are no shapes", content = {
+            @Content(schema = @Schema(implementation = MathDto.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "There are no letters", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/all")
-    public ResponseEntity<List<ShapeDto>> getShapes() {
+    public ResponseEntity<List<MathDto>> getMathProblems() {
         try {
-            List<ShapeDto> shapes = shapeService.getAllShapes();
-            if (shapes.isEmpty()) {
+            List<MathDto> mathProblems = mathService.getAllMathProblems();
+            if (mathProblems.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(shapes);
+            return ResponseEntity.ok(mathProblems);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Retrieve a Shape by id")
+    @Operation(summary = "Retrieve a Math problem by id")
     @ApiResponses({
         @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = ShapeDto.class), mediaType = "application/json")}),
-        @ApiResponse(responseCode = "404", description = "Shape not found", content = {
+            @Content(schema = @Schema(implementation = MathDto.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "Math problem not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/{id}")
-    public ResponseEntity<ShapeDto> getShapeById(@PathVariable Integer id) {
+    public ResponseEntity<MathDto> getMathProblemById(@PathVariable Integer id) {
         try {
-            ShapeDto shape = shapeService.getShapeById(id);
-            if (shape == null) {
+            MathDto mathProblem = mathService.getMathProblemById(id);
+            if (mathProblem == null) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(shape);
+            return ResponseEntity.ok(mathProblem);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Retrieve sound path for a Shape")
+    @Operation(summary = "Compare answer to Math problem")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", content = {
+            @Content(schema = @Schema(implementation = String.class), mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "Math problem not found", content = {
+            @Content(schema = @Schema())}),
+        @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @PostMapping("/compare-answer/{id}")
+    public ResponseEntity<String> compareAnswer(@PathVariable Integer id, @RequestBody String answer) {
+        try {
+            String result = mathService.compareAnswer(id, answer);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @Operation(summary = "Retrieve sound path for a Math problem")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Sound file returned successfully", content = {
             @Content(mediaType = "audio/mpeg")}),
-        @ApiResponse(responseCode = "404", description = "Shape not found", content = {
+        @ApiResponse(responseCode = "404", description = "Math problem not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/shapeSound/{id}")
-    public ResponseEntity<Resource> returnShapeSoundPath(@PathVariable Integer id) {
+    @GetMapping("/mathSound/{id}")
+    public ResponseEntity<Resource> returnMathSoundPath(@PathVariable Integer id) {
         try {
-            Resource soundResource = shapeService.returnSoundPath(id);
+            Resource soundResource = mathService.returnSoundPath(id);
             if (soundResource == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Shape not found");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Math problem not found");
             }
 
             String filename = soundResource.getFilename();
             return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType("audio/mpeg"))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + filename + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
                 .body(soundResource);
-        } catch (ResponseStatusException e) {
-            throw e;
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Retrieve the image path of a Shape by id")
+    @Operation(summary = "Retrieve image path for a Math problem")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Image file returned successfully", content = {
             @Content(mediaType = "image/png")}),
-        @ApiResponse(responseCode = "404", description = "Shape not found", content = {
+        @ApiResponse(responseCode = "404", description = "Math problem not found", content = {
             @Content(schema = @Schema())}),
         @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
-    @GetMapping("/shapeImage/{id}")
-    public ResponseEntity<Resource> returnShapeImagePath(@PathVariable Integer id) {
+    @GetMapping("/mathImage/{id}")
+    public ResponseEntity<Resource> returnMathImagePath(@PathVariable Integer id) {
         try {
-            Resource imageResource = shapeService.returnImagePath(id);
+            Resource imageResource = mathService.returnImagePath(id);
             if (imageResource == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Shape not found");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Exercise not found");
             }
 
             String filename = imageResource.getFilename();
