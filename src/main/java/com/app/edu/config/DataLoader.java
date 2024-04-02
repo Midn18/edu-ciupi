@@ -193,10 +193,18 @@ public class DataLoader {
             ));
 
             // shapes
-            shapeRepository.save(new ShapeEntity(1, "Cerc","src/main/resources/static/sounds/shapesSounds/circleSound.wav",
+            shapeRepository.save(new ShapeEntity(1, "Cerc", "src/main/resources/static/sounds/shapesSounds/circleSound.wav",
                                                  "src/main/resources/static/images/shapesImages/circleImage.png"));
-            shapeRepository.save(new ShapeEntity(2, "Triunghi","src/main/resources/static/sounds/shapesSounds/triangleSound.wav",
-                                                    "src/main/resources/static/images/shapesImages/triangleImage.png"));
+            shapeRepository.save(new ShapeEntity(2, "Triunghi", "src/main/resources/static/sounds/shapesSounds/triangleSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/triangleImage.png"));
+            shapeRepository.save(new ShapeEntity(3, "Elipsă", "src/main/resources/static/sounds/shapesSounds/elipseSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/elipseImage.png"));
+            shapeRepository.save(new ShapeEntity(4, "Pentagon", "src/main/resources/static/sounds/shapesSounds/pentagonSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/pentagonImage.png"));
+            shapeRepository.save(new ShapeEntity(5, "Stea", "src/main/resources/static/sounds/shapesSounds/starSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/starImage.png"));
+            shapeRepository.save(new ShapeEntity(6, "Hexagon", "src/main/resources/static/sounds/shapesSounds/hexagonSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/hexagonImage.png"));
 
             // letters
             letterRepository.save(new LetterEntity(1, "A", "src/main/resources/static/sounds/lettersSounds/A.wav",
