@@ -3,6 +3,8 @@ package com.app.edu.service;
 import com.app.edu.dtos.MathDto;
 import com.app.edu.entities.MathEntity;
 import com.app.edu.repository.MathRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,14 +39,26 @@ public class MathServiceImpl implements MathService, MediaResourceService {
     }
 
     @Override
-    public String compareAnswer(Integer id, String answer) {
-        return mathRepository.findById(id).map(exercise -> {
-            if (exercise.getAnswer().equals(answer)) {
-                return "Corect!";
-            } else {
-                return "Incorect!";
-            }
-        }).orElseThrow(() -> new RuntimeException("Exercise with ID " + id + " not found"));
+    public String compareAnswer(Integer id, String jsonAnswer) {
+        try {
+            // Create an ObjectMapper instance
+            ObjectMapper objectMapper = new ObjectMapper();
+            // Parse the JSON string
+            JsonNode rootNode = objectMapper.readTree(jsonAnswer);
+            // Extract the "answer" value
+            String parsedResponse = rootNode.path("answer").asText();
+
+            // Your existing logic to compare the answer and return a response
+            return mathRepository.findById(id).map(exercise -> {
+                if (exercise.getAnswer().equals(parsedResponse)) {
+                    return "Corect!";
+                } else {
+                    return "Incorect!";
+                }
+            }).orElseThrow(() -> new RuntimeException("Exercise with ID " + id + " not found"));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse JSON answer", e);
+        }
     }
 
     @Override
