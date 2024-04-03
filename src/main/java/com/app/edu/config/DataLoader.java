@@ -10,6 +10,7 @@ import com.app.edu.entities.CategoryEntity;
 import com.app.edu.entities.ColorEntity;
 import com.app.edu.entities.LetterEntity;
 import com.app.edu.entities.MathEntity;
+import com.app.edu.entities.NumberEntity;
 import com.app.edu.entities.PlanetEntity;
 import com.app.edu.entities.ResourceEntity;
 import com.app.edu.entities.ShapeEntity;
@@ -19,6 +20,7 @@ import com.app.edu.repository.ColorsRepository;
 import com.app.edu.repository.EducationalResourceRepository;
 import com.app.edu.repository.LetterRepository;
 import com.app.edu.repository.MathRepository;
+import com.app.edu.repository.NumberRepository;
 import com.app.edu.repository.PlanetsRepository;
 import com.app.edu.repository.ShapeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,28 +40,73 @@ public class DataLoader {
     @Autowired LetterRepository letterRepository;
     @Autowired ColorsRepository colorsRepository;
     @Autowired MathRepository mathRepository;
+    @Autowired NumberRepository numberRepository;
 
     @Bean
     @Profile("dev")
     CommandLineRunner populateData() {
         return (args) -> {
             animalRepository.save(new AnimalEntity(1, "Câine", "src/main/resources/static/sounds/domesticAnimalsSounds/dogSound.wav",
-                                                   "src/main/resources/static/images/domesticAnimalsImages/dogImage.png", DOMESTIC,
+                                                   "src/main/resources/static/images/domesticAnimalsImages/dog.png", DOMESTIC,
                                                    "Câinele este brav", "Peste tot"));
             animalRepository.save(new AnimalEntity(2, "Pisică", "src/main/resources/static/sounds/domesticAnimalsSounds/catSound.wav",
-                                                   "src/main/resources/static/images/domesticAnimalsImages/catImage.png", DOMESTIC,
+                                                   "src/main/resources/static/images/domesticAnimalsImages/cat.png", DOMESTIC,
                                                    "Pisica este leneșă", "Peste tot"));
             animalRepository.save(new AnimalEntity(3, "Găină", "src/main/resources/static/sounds/domesticAnimalsSounds/chickenSound.wav",
-                                                   "src/main/resources/static/images/domesticAnimalsImages/chickenImage.png", DOMESTIC,
+                                                   "src/main/resources/static/images/domesticAnimalsImages/chicken.png", DOMESTIC,
                                                    "Găina face ouă", "Peste tot"));
             animalRepository.save(new AnimalEntity(4, "Vacă", "src/main/resources/static/sounds/domesticAnimalsSounds/cowSound.wav",
-                                                   "src/main/resources/static/images/domesticAnimalsImages/cowImage.png", DOMESTIC,
+                                                   "src/main/resources/static/images/domesticAnimalsImages/cow.png", DOMESTIC,
                                                    "Vaca dă lapte", "Peste tot"));
-
+            animalRepository.save(new AnimalEntity(5, "Rață", "src/main/resources/static/sounds/domesticAnimalsSounds/duckSound.wav",
+                                                   "src/main/resources/static/images/domesticAnimalsImages/duck.png", DOMESTIC,
+                                                     "Rața înoată în apă", "Lac"));
+            animalRepository.save(new AnimalEntity(6, "Cal", "src/main/resources/static/sounds/domesticAnimalsSounds/horseSound.wav",
+                                                     "src/main/resources/static/images/domesticAnimalsImages/horse.png", DOMESTIC,
+                                                    "Calul este un animal puternic", "Peste tot"));
+            animalRepository.save(new AnimalEntity(7, "Oaie", "src/main/resources/static/sounds/domesticAnimalsSounds/sheepSound.wav",
+                                                     "src/main/resources/static/images/domesticAnimalsImages/sheep.png", DOMESTIC,
+                                                    "Oaia dă lână", "Peste tot"));
+            animalRepository.save(new AnimalEntity(8, "Porc", "src/main/resources/static/sounds/domesticAnimalsSounds/pigSound.wav",
+                                                     "src/main/resources/static/images/domesticAnimalsImages/pig.png", DOMESTIC,
+                                                    "Porcul face grăsime", "Peste tot"));
+            animalRepository.save(new AnimalEntity(9, "Iepure", "src/main/resources/static/sounds/wildAnimalsSounds/rabbitSound.wav",
+                                                     "src/main/resources/static/images/domesticAnimalsImages/rabbit.png", DOMESTIC,
+                                                    "Iepurele sare", "Pădure"));
+            animalRepository.save(new AnimalEntity(10, "Capră", "src/main/resources/static/sounds/domesticAnimalsSounds/goatSound.wav",
+                                                     "src/main/resources/static/images/domesticAnimalsImages/goat.png", DOMESTIC,
+                                                    "Capra dă lapte", "Peste tot"));
             //wild animals
-            animalRepository.save(new AnimalEntity(5, "Leu", "src/main/resources/static/sounds/wildAnimalsSounds/lionSound.wav",
-                                                   "src/main/resources/static/images/wildAnimalsImages/lionImage.png", WILD,
+            animalRepository.save(new AnimalEntity(11, "Leu", "src/main/resources/static/sounds/wildAnimalsSounds/lionSound.wav",
+                                                   "src/main/resources/static/images/wildAnimalsImages/lion.png", WILD,
                                                    "Leul este regele junglei", "Africa"));
+            animalRepository.save(new AnimalEntity(12, "Tigru", "src/main/resources/static/sounds/wildAnimalsSounds/tigerSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/tiger.png", WILD,
+                                                    "Tigrul este un animal periculos", "Asia"));
+            animalRepository.save(new AnimalEntity(13, "Elefant", "src/main/resources/static/sounds/wildAnimalsSounds/elephantSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/elephant.png", WILD,
+                                                    "Elefantul are trompa lungă", "Africa"));
+            animalRepository.save(new AnimalEntity(14, "Vulpe", "src/main/resources/static/sounds/wildAnimalsSounds/foxSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/fox.png", WILD,
+                                                    "Vulpea este un animal inteligent", "Pădure"));
+            animalRepository.save(new AnimalEntity(15, "Urs", "src/main/resources/static/sounds/wildAnimalsSounds/bearSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/bear.png", WILD,
+                                                    "Ursul hibernează iarna", "Pădure"));
+            animalRepository.save(new AnimalEntity(16, "Delfin", "src/main/resources/static/sounds/wildAnimalsSounds/dolphinSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/dolphin.png", WILD,
+                                                    "Delfinul este un animal inteligent", "Ocean"));
+            animalRepository.save(new AnimalEntity(17, "Maimuța", "src/main/resources/static/sounds/wildAnimalsSounds/monkeySound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/monkey.png", WILD,
+                                                    "Maimuța se joacă în copaci", "Pădure"));
+            animalRepository.save(new AnimalEntity(18, "Șarpe", "src/main/resources/static/sounds/wildAnimalsSounds/snakeSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/snake.png", WILD,
+                                                    "Șarpele este un animal periculos", "Pădure"));
+            animalRepository.save(new AnimalEntity(19, "Lup", "src/main/resources/static/sounds/wildAnimalsSounds/wolfSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/wolf.png", WILD,
+                                                    "Lupul trăiește în haită", "Pădure"));
+            animalRepository.save(new AnimalEntity(20, "Zebra", "src/main/resources/static/sounds/wildAnimalsSounds/zebraSound.wav",
+                                                     "src/main/resources/static/images/wildAnimalsImages/zebra.png", WILD,
+                                                    "Zebra are dungi negre și albe", "Africa"));
 
             // categories
             categoryRepository.save(new CategoryEntity(1, "Animale", "src/main/resources/static/images/categories"
@@ -279,18 +326,98 @@ public class DataLoader {
                                                   "src/main/resources/static/images/colorsImages/blue.png"));
 
             // exercises
-            mathRepository.save(new MathEntity(1, "1+1", "src/main/resources/static/sounds/mathSounds/1+1.wav",
+            mathRepository.save(new MathEntity(1,
+                                               "1+1",
+                                               "src/main/resources/static/sounds/mathSounds/one_plus_one.wav",
                                                "src/main/resources/static/images/mathExercisesImages/one_plus_one.png",
-                                               "Dacă Ana are un măr și primește încă unul de la mama ei, câte mere are Ana acum?", "2"));
-            mathRepository.save(new MathEntity(2, "1+0", "src/main/resources/static/sounds/mathSounds/1+0.wav",
-                                                  "src/main/resources/static/images/mathExercisesImages/one_plus_zero.png",
-                                                  "Dacă Ionuț are un balon și nu primește niciunul în plus, câte baloane are Ionuț?", "1"));
-            mathRepository.save(new MathEntity(3, "0+1", "src/main/resources/static/sounds/mathSounds/0+1.wav",
-                                                    "src/main/resources/static/images/mathExercisesImages/zero_plus_one.png",
-                                                    "Dacă Andreea nu are niciun sticker și primește unul de la prietena ei, câte stickere are Andreea acum?", "1"));
-            mathRepository.save(new MathEntity(4, "1+2", "src/main/resources/static/sounds/mathSounds/1+2.wav",
-                                                    "src/main/resources/static/images/mathExercisesImages/one_plus_two.png",
-                                                    "Dacă Mihai are un joc video și primește încă două de ziua lui, câte jocuri video are Mihai acum?", "3"));
+                                               "Dacă Ana are un măr și primește încă unul de la mama ei, câte mere are Ana acum?",
+                                               "2"));
+            mathRepository.save(new MathEntity(2,
+                                               "1+0",
+                                               "src/main/resources/static/sounds/mathSounds/one_plus_zero.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/one_plus_zero.png",
+                                               "Dacă Ionuț are un balon și nu primește niciunul în plus, câte baloane are Ionuț?",
+                                               "1"));
+            mathRepository.save(new MathEntity(3,
+                                               "0+1",
+                                               "src/main/resources/static/sounds/mathSounds/zero_plus_one.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/zero_plus_one.png",
+                                               "Dacă Andreea nu are niciun sticker și primește unul de la prietena ei, câte stickere are Andreea acum?",
+                                               "1"));
+            mathRepository.save(new MathEntity(4,
+                                               "1+2",
+                                               "src/main/resources/static/sounds/mathSounds/one_plus_two.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/one_plus_two.png",
+                                               "Dacă Mihai are un joc video și primește încă două de ziua lui, câte jocuri video are Mihai acum?",
+                                               "3"));
+            mathRepository.save(new MathEntity(5,
+                                               "2+2",
+                                               "src/main/resources/static/sounds/mathSounds/two_plus_two.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/two_plus_two.png",
+                                               " Dacă Laura are două pisici și găsește încă două pisici abandonate, câte pisici are Laura acum?",
+                                               "4"));
+            mathRepository.save(new MathEntity(6,
+                                               "2+1",
+                                               "src/main/resources/static/sounds/mathSounds/two_plus_one.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/two_plus_one.png",
+                                               "Dacă Alex are două ciocolate și primește încă una de la bunica lui, câte ciocolate are Alex acum?",
+                                               "3"));
+            mathRepository.save(new MathEntity(7,
+                                               "0+2",
+                                               "src/main/resources/static/sounds/mathSounds/zero_plus_two.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/zero_plus_two.png",
+                                               "Dacă Maria nu are nicio păpușă și primește două de la părinți, câte păpuși are "
+                                                   + "Maria acum?",
+                                               "2"));
+            mathRepository.save(new MathEntity(8,
+                                               "0+0",
+                                               "src/main/resources/static/sounds/mathSounds/zero_plus_zero.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/zero_plus_zero.png",
+                                               "Dacă Ion nu are nicio carte și nu primește niciuna nouă, câte cărți are Ion?",
+                                               "0"));
+            mathRepository.save(new MathEntity(9, "1-1", "src/main/resources/static/sounds/mathSounds/one_minus_one.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/one_minus_one.png",
+                                               "Dacă Andrei are un măr și mănâncă unul, câte mere are Andrei acum?", "0"));
+            mathRepository.save(new MathEntity(10,
+                                               "1-0",
+                                               "src/main/resources/static/sounds/mathSounds/one_minus_zero.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/one_minus_zero.png",
+                                               "Dacă Sofia are o floare și nu dă nicio floare prietenei ei, câte flori are Sofia acum?",
+                                               "1"));
+            mathRepository.save(new MathEntity(11,
+                                               "2-1",
+                                               "src/main/resources/static/sounds/mathSounds/two_minus_one.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/two_minus_one.png",
+                                               "Dacă Lucia are două bomboane și dă una prietenei ei, câte bomboane are Lucia acum?",
+                                               "1"));
+            mathRepository.save(new MathEntity(12,
+                                               "2-2",
+                                               "src/main/resources/static/sounds/mathSounds/two_minus_two.wav",
+                                               "src/main/resources/static/images/mathExercisesImages/two_minus_two.png",
+                                               "Dacă Melisa are două baloane și le dă pe ambele fratelui ei, câte baloane are Melisa acum?",
+                                               "0"));
+
+            // numbers
+            numberRepository.save(new NumberEntity(1, "0", "src/main/resources/static/sounds/numbersSounds/0.wav",
+                                                   "src/main/resources/static/images/numbersImages/0.png"));
+            numberRepository.save(new NumberEntity(2, "1", "src/main/resources/static/sounds/numbersSounds/1.wav",
+                                                   "src/main/resources/static/images/numbersImages/1.png"));
+            numberRepository.save(new NumberEntity(3, "2", "src/main/resources/static/sounds/numbersSounds/2.wav",
+                                                   "src/main/resources/static/images/numbersImages/2.png"));
+            numberRepository.save(new NumberEntity(4, "3", "src/main/resources/static/sounds/numbersSounds/3.wav",
+                                                   "src/main/resources/static/images/numbersImages/3.png"));
+            numberRepository.save(new NumberEntity(5, "4", "src/main/resources/static/sounds/numbersSounds/4.wav",
+                                                   "src/main/resources/static/images/numbersImages/4.png"));
+            numberRepository.save(new NumberEntity(6, "5", "src/main/resources/static/sounds/numbersSounds/5.wav",
+                                                   "src/main/resources/static/images/numbersImages/5.png"));
+            numberRepository.save(new NumberEntity(7, "6", "src/main/resources/static/sounds/numbersSounds/6.wav",
+                                                   "src/main/resources/static/images/numbersImages/6.png"));
+            numberRepository.save(new NumberEntity(8, "7", "src/main/resources/static/sounds/numbersSounds/7.wav",
+                                                   "src/main/resources/static/images/numbersImages/7.png"));
+            numberRepository.save(new NumberEntity(9, "8", "src/main/resources/static/sounds/numbersSounds/8.wav",
+                                                   "src/main/resources/static/images/numbersImages/8.png"));
+            numberRepository.save(new NumberEntity(10, "9", "src/main/resources/static/sounds/numbersSounds/9.wav",
+                                                   "src/main/resources/static/images/numbersImages/9.png"));
         };
     }
 }
