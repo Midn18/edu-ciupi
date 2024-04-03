@@ -205,6 +205,14 @@ public class DataLoader {
                                                  "src/main/resources/static/images/shapesImages/starImage.png"));
             shapeRepository.save(new ShapeEntity(6, "Hexagon", "src/main/resources/static/sounds/shapesSounds/hexagonSound.wav",
                                                  "src/main/resources/static/images/shapesImages/hexagonImage.png"));
+            shapeRepository.save(new ShapeEntity(7, "Pătrat", "src/main/resources/static/sounds/shapesSounds/squareSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/squareImage.png"));
+            shapeRepository.save(new ShapeEntity(8, "Semiluna", "src/main/resources/static/sounds/shapesSounds/halfmoonSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/halfmoonImage.png"));
+            shapeRepository.save(new ShapeEntity(9, "Dreptunghi", "src/main/resources/static/sounds/shapesSounds/rectangleSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/rectangleImage.png"));
+            shapeRepository.save(new ShapeEntity(10, "Romb", "src/main/resources/static/sounds/shapesSounds/rhombusSound.wav",
+                                                 "src/main/resources/static/images/shapesImages/rhombusImage.png"));
 
             // letters
             letterRepository.save(new LetterEntity(1, "A", "src/main/resources/static/sounds/lettersSounds/A.wav",
@@ -245,12 +253,12 @@ public class DataLoader {
                                                     "src/main/resources/static/images/lettersImages/rImage.png"));
             letterRepository.save(new LetterEntity(19, "S", "src/main/resources/static/sounds/lettersSounds/S.wav",
                                                     "src/main/resources/static/images/lettersImages/sImage.png"));
-            letterRepository.save(new LetterEntity(20, "Ș", "src/main/resources/static/sounds/lettersSounds/Ș.wav",
-                                                    "src/main/resources/static/images/lettersImages/șImage.png"));
+            letterRepository.save(new LetterEntity(20, "Ș", "src/main/resources/static/sounds/lettersSounds/SH.wav",
+                                                    "src/main/resources/static/images/lettersImages/shImage.png"));
             letterRepository.save(new LetterEntity(21, "T", "src/main/resources/static/sounds/lettersSounds/T.wav",
                                                     "src/main/resources/static/images/lettersImages/tImage.png"));
-            letterRepository.save(new LetterEntity(22, "Ț", "src/main/resources/static/sounds/lettersSounds/Ț.wav",
-                                                    "src/main/resources/static/images/lettersImages/țImage.png"));
+            letterRepository.save(new LetterEntity(22, "Ț", "src/main/resources/static/sounds/lettersSounds/TS.wav",
+                                                    "src/main/resources/static/images/lettersImages/tsImage.png"));
             letterRepository.save(new LetterEntity(23, "U", "src/main/resources/static/sounds/lettersSounds/U.wav",
                                                     "src/main/resources/static/images/lettersImages/uImage.png"));
             letterRepository.save(new LetterEntity(24, "V", "src/main/resources/static/sounds/lettersSounds/V.wav",
