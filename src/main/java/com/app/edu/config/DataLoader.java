@@ -109,23 +109,53 @@ public class DataLoader {
                                                     "Zebra are dungi negre și albe", "Africa"));
 
             // categories
-            categoryRepository.save(new CategoryEntity(1, "Animale", "src/main/resources/static/images/categories"
-                + "/animalCategory.png","Aici vei avea posibilitatea să faci cu minunata lume a animalelor", AGE_3_5));
-            categoryRepository.save(new CategoryEntity(2, "Cifre", "src/main/resources/static/images/categories"
-                + "/mathCategory.png", "Aici vei învăța să numeri", AGE_3_5));
-            categoryRepository.save(new CategoryEntity(3, "Litere", "src/main/resources/static/images/categories"
-                + "/letterCategory.png","Aici vei învăța literele", AGE_3_5));
-            categoryRepository.save(new CategoryEntity(4, "Culori", "src/main/resources/static/images/categories"
-                + "/colorCategory.png","Aici vei învăța culorile", AGE_3_5));
+            categoryRepository.save(new CategoryEntity(
+                1,
+                "Animale",
+                "src/main/resources/static/images/categories/animalCategory.png",
+                "Aici vei avea posibilitatea să faci cunoștință cu minunata lume a animalelor",
+                AGE_3_5));
+            categoryRepository.save(new CategoryEntity(
+                2,
+                "Cifre",
+                "src/main/resources/static/images/categories/mathCategory.png",
+                "Aici, ca un mic pici, vei călători prin lumea cifrelor, învățând să le recunoști",
+                AGE_3_5));
+            categoryRepository.save(new CategoryEntity(
+                3,
+                "Litere",
+                "src/main/resources/static/images/categories/letterCategory.png",
+                "Aici vei descoperi alfabetul distractiv, pronunțând fiecare literă de la A la Z",
+                AGE_3_5));
+            categoryRepository.save(new CategoryEntity(
+                4,
+                "Culori",
+                "src/main/resources/static/images/categories/colorCategory.png",
+                "Aici vei explora culorile, întâlnindu-le pe cele mai frumoase dintre ele în natură",
+                AGE_3_5));
 
-            categoryRepository.save(new CategoryEntity(5, "Matematică", "src/main/resources/static/images/categories"
-                + "/mathCategory.png", "Aici vei putea studia operațiile matematice", AGE_6_7));
-            categoryRepository.save(new CategoryEntity(6, "Litere", "src/main/resources/static/images/categories"
-                + "/letterCategory.png", "Aici studia literele și cuvintele", AGE_6_7));
-            categoryRepository.save(new CategoryEntity(7, "Figuri geometrice", "src/main/resources/static/images/categories"
-                + "/shapeCategory.png", "Aici vei putea studia figuri geometrice", AGE_6_7));
-            categoryRepository.save(new CategoryEntity(8, "Științe", "src/main/resources/static/images/categories"
-                + "/scienceCategory.png", "Aici vei putea studia științele", AGE_6_7));
+            categoryRepository.save(new CategoryEntity(
+                5,
+                "Matematică",
+                "src/main/resources/static/images/categories/mathCategory.png",
+                "Aici vei explora matematica într-un mod distractiv, învățând să aduni și să scazi",
+                AGE_6_7));
+            categoryRepository.save(new CategoryEntity(
+                6,
+                "Litere",
+                "src/main/resources/static/images/categories/letterCategory.png",
+                "Aici vei descoperi alfabetul, învățând pronunția corectă a literelor de la A la Z",
+                AGE_6_7));
+            categoryRepository.save(new CategoryEntity(
+                7, "Figuri geometrice",
+                "src/main/resources/static/images/categories/shapeCategory.png",
+                "Aici vei învăța despre geometrie, o aventură a formelor și dimensiunilor", AGE_6_7));
+            categoryRepository.save(new CategoryEntity(
+                8,
+                "Științe",
+                "src/main/resources/static/images/categories/scienceCategory.png",
+                "Aici vom explora știința, investigând cerul și universul care ne înconjoară",
+                AGE_6_7));
 
             // educational resources
             educationalResourceRepository.save(new ResourceEntity(1, "Fișa distractivă", "src/main/resources/static/educationalResources/TestResource.pdf"));
