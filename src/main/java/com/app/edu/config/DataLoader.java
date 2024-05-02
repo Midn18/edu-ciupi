@@ -48,10 +48,11 @@ public class DataLoader {
         return (args) -> {
             animalRepository.save(new AnimalEntity(1, "Câine", "src/main/resources/static/sounds/domesticAnimalsSounds/dogSound.wav",
                                                    "src/main/resources/static/images/domesticAnimalsImages/dog.png", DOMESTIC,
-                                                   "Câinele este brav", "Peste tot"));
+                                                   "Câinii sunt cunoscuți pentru loialitatea lor și adoră să petreacă timp cu familiile lor umane. Ei pot învăța diferite trucuri și comenzi, făcându-i parteneri de joacă și protecție minunați.", "Peste tot"));
             animalRepository.save(new AnimalEntity(2, "Pisică", "src/main/resources/static/sounds/domesticAnimalsSounds/catSound.wav",
                                                    "src/main/resources/static/images/domesticAnimalsImages/cat.png", DOMESTIC,
-                                                   "Pisica este leneșă", "Peste tot"));
+                                                   "\n" +
+                                                           "Pisicile sunt animale de companie blânde și jucăușe, care adoră să toarcă când sunt fericite. Ele sunt foarte independente și își petrec mult timp vânând jucării sau odihnindu-se în locuri calde și confortabile.", "Peste tot"));
             animalRepository.save(new AnimalEntity(3, "Găină", "src/main/resources/static/sounds/domesticAnimalsSounds/chickenSound.wav",
                                                    "src/main/resources/static/images/domesticAnimalsImages/chicken.png", DOMESTIC,
                                                    "Găina face ouă", "Peste tot"));
@@ -72,7 +73,7 @@ public class DataLoader {
                                                     "Porcul face grăsime", "Peste tot"));
             animalRepository.save(new AnimalEntity(9, "Iepure", "src/main/resources/static/sounds/domesticAnimalsSounds/rabbitSound.wav",
                                                      "src/main/resources/static/images/domesticAnimalsImages/rabbit.png", DOMESTIC,
-                                                    "Iepurele sare", "Pădure"));
+                                                    "Iepurii sunt animale blânde și timide, cu blană moale și urechi lungi și frumoase. Le place să sară și să se joace în spații largi, iar dieta lor principală include iarbă și legume proaspete.", "Pădure"));
             animalRepository.save(new AnimalEntity(10, "Capră", "src/main/resources/static/sounds/domesticAnimalsSounds/goatSound.wav",
                                                      "src/main/resources/static/images/domesticAnimalsImages/goat.png", DOMESTIC,
                                                     "Capra dă lapte", "Peste tot"));
@@ -88,13 +89,13 @@ public class DataLoader {
                                                     "Elefantul are trompa lungă", "Africa"));
             animalRepository.save(new AnimalEntity(14, "Vulpe", "src/main/resources/static/sounds/wildAnimalsSounds/foxSound.wav",
                                                      "src/main/resources/static/images/wildAnimalsImages/fox.png", WILD,
-                                                    "Vulpea este un animal inteligent", "Pădure"));
+                                                    "Vulpile sunt animale sălbatice cu blană roșcată și o coadă pufoasă, cunoscute pentru istețimea lor. Ele trăiesc în păduri și câmpii, unde vânează mici animale, fructe și insecte pentru a se hrăni.", "Pădure"));
             animalRepository.save(new AnimalEntity(15, "Urs", "src/main/resources/static/sounds/wildAnimalsSounds/bearSound.wav",
                                                      "src/main/resources/static/images/wildAnimalsImages/bear.png", WILD,
                                                     "Ursul hibernează iarna", "Pădure"));
             animalRepository.save(new AnimalEntity(16, "Delfin", "src/main/resources/static/sounds/wildAnimalsSounds/dolphinSound.wav",
                                                      "src/main/resources/static/images/wildAnimalsImages/dolphin.png", WILD,
-                                                    "Delfinul este un animal inteligent", "Ocean"));
+                                                    "Delfinii sunt creaturi inteligente și prietenoase care trăiesc în oceanele lumii și adoră să sară peste valuri. Ei comunică între ei prin sunete speciale și sunt cunoscuți pentru abilitatea de a ajuta alte animale și chiar oameni.", "Ocean"));
             animalRepository.save(new AnimalEntity(17, "Maimuța", "src/main/resources/static/sounds/wildAnimalsSounds/monkeySound.wav",
                                                      "src/main/resources/static/images/wildAnimalsImages/monkey.png", WILD,
                                                     "Maimuța se joacă în copaci", "Pădure"));
@@ -106,7 +107,7 @@ public class DataLoader {
                                                     "Lupul trăiește în haită", "Pădure"));
             animalRepository.save(new AnimalEntity(20, "Zebra", "src/main/resources/static/sounds/wildAnimalsSounds/zebraSound.wav",
                                                      "src/main/resources/static/images/wildAnimalsImages/zebra.png", WILD,
-                                                    "Zebra are dungi negre și albe", "Africa"));
+                                                    "Zebrele sunt animale sălbatice cunoscute pentru dungiile lor negre și albe, care sunt unice pentru fiecare individ. Ele trăiesc în grupuri mari în savanele Africii, unde aleargă rapid pentru a scăpa de prădători.", "Africa"));
 
             // categories
             categoryRepository.save(new CategoryEntity(
