@@ -331,12 +331,8 @@ public class DataLoader {
                                                    "src/main/resources/static/images/lettersImages/rImage.png"));
             letterRepository.save(new LetterEntity(19, "S", "src/main/resources/static/sounds/lettersSounds/S.wav",
                                                    "src/main/resources/static/images/lettersImages/sImage.png"));
-            letterRepository.save(new LetterEntity(20, "Ș", "src/main/resources/static/sounds/lettersSounds/SH.wav",
-                                                   "src/main/resources/static/images/lettersImages/shImage.png"));
             letterRepository.save(new LetterEntity(21, "T", "src/main/resources/static/sounds/lettersSounds/T.wav",
                                                    "src/main/resources/static/images/lettersImages/tImage.png"));
-            letterRepository.save(new LetterEntity(22, "Ț", "src/main/resources/static/sounds/lettersSounds/TS.wav",
-                                                   "src/main/resources/static/images/lettersImages/tsImage.png"));
             letterRepository.save(new LetterEntity(23, "U", "src/main/resources/static/sounds/lettersSounds/U.wav",
                                                    "src/main/resources/static/images/lettersImages/uImage.png"));
             letterRepository.save(new LetterEntity(24, "V", "src/main/resources/static/sounds/lettersSounds/V.wav",
